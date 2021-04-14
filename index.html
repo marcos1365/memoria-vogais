@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da memória</title>
+    <style>
+        body{
+            background:rgb(57,57,57);
+        }
+        header{
+            text-align: center;
+            color: grey;
+        }
+        section{
+            background: rgb(80,80,80);
+            width:756px;
+            margin: auto; /*centralizar*/
+            box-shadow: 3px 3px 5px rgba(0,0,0,363);
+            border-radius: 10px;
+        }
+        div{
+            text-align: justify;
+        }
+        img{
+            width:138px;
+            height: 200px; 
+            padding: 5px;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+        img:hover{
+            transform: scale(1.1);           
+        }
+        footer{
+            text-align: center;
+            color: grey;
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>MEMÓRIA VOGAIS</h1>
+    </header>
+    <section>
+    <div>
+        <img id="imagem0" src="imagens/alfabeto.jpg"/>
+        <img id="imagem1" src="imagens/alfabeto.jpg"/>
+        <img id="imagem2" src="Imagens/alfabeto.jpg"/>
+        <img id="imagem3" src="imagens/alfabeto.jpg"/>
+        <img id="imagem4" src="Imagens/alfabeto.jpg"/>
+        <img id="imagem5" src="Imagens/alfabeto.jpg"/>
+        <img id="imagem6" src="imagens/alfabeto.jpg"/>
+        <img id="imagem7" src="Imagens/alfabeto.jpg"/>
+        <img id="imagem8" src="Imagens/alfabeto.jpg"/>
+        <img id="imagem9" src="Imagens/alfabeto.jpg"/>
+    </div> 
+    </section>
+    <footer>
+        <p>Desenvolvido por Marcos Oliveira</p>
+    </footer>
+    <script>
+        var posicao= [0,0,0,0,0,0,0,0,0,0];
+        var conteudo=[1,1,2,2,3,3,4,4,5,5];
+        var estado=[0,0,0,0,0,0,0,0,0,0];
+        var sorteado;
+        for(var x=0;x<10;x++){
+            sorteado=Number.parseInt(Math.random()*(10-x));
+            posicao[x]=conteudo[sorteado];
+            conteudo.splice(sorteado,1);
+        } 
+        //window.document.write(`${posicao}`)
+        var i=window.document.getElementById('imagem0');
+        var i0=window.document.getElementById('imagem0');
+        var i1=window.document.getElementById('imagem1');
+        var i2=window.document.getElementById('imagem2');
+        var i3=window.document.getElementById('imagem3');
+        var i4=window.document.getElementById('imagem4');
+        var i5=window.document.getElementById('imagem5');
+        var i6=window.document.getElementById('imagem6');
+        var i7=window.document.getElementById('imagem7');
+        var i8=window.document.getElementById('imagem8');
+        var i9=window.document.getElementById('imagem9');
+        i0.addEventListener('click', clicar0);
+        i1.addEventListener('click', clicar1);
+        i2.addEventListener('click', clicar2);
+        i3.addEventListener('click', clicar3);
+        i4.addEventListener('click', clicar4);
+        i5.addEventListener('click', clicar5);
+        i6.addEventListener('click', clicar6);
+        i7.addEventListener('click', clicar7);
+        i8.addEventListener('click', clicar8);
+        i9.addEventListener('click', clicar9);
+        window.setInterval(verificar,4000)
+        function clicar0(){ 
+            verificar()
+            if(posicao[0]===1){
+                i0.src="imagens/a.png" 
+            }else
+            if(posicao[0]===2){
+                i0.src="imagens/e.png" 
+            }else
+            if(posicao[0]===3){
+                i0.src="imagens/i.png" 
+            }else
+            if(posicao[0]===4){
+                i0.src="imagens/o.png" 
+            }else
+            if(posicao[0]===5){
+                i0.src="imagens/u.png"
+            }
+            estado[0]=1
+            comparar(0)
+        }
+        function clicar1(){
+            verificar()
+            if(posicao[1]===1){
+                i1.src="imagens/a.png" 
+            }else
+            if(posicao[1]===2){
+                i1.src="imagens/e.png" 
+            }else
+            if(posicao[1]===3){
+                i1.src="imagens/i.png" 
+            }else
+            if(posicao[1]===4){
+                i1.src="imagens/o.png" 
+            }else
+            if(posicao[1]===5){
+                i1.src="imagens/u.png"
+            }
+            estado[1]=1
+            comparar(1)
+        }
+        function clicar2(){
+            verificar()
+            if(posicao[2]===1){
+                i2.src="imagens/a.png" 
+            }else
+            if(posicao[2]===2){
+                i2.src="imagens/e.png" 
+            }else
+            if(posicao[2]===3){
+                i2.src="imagens/i.png" 
+            }else
+            if(posicao[2]===4){
+                i2.src="imagens/o.png" 
+            }else
+            if(posicao[2]===5){
+                i2.src="imagens/u.png"
+            }
+            estado[2]=1
+            comparar(2)
+        }
+        function clicar3(){
+            verificar()
+            if(posicao[3]===1){
+                i3.src="imagens/a.png" 
+            }else
+            if(posicao[3]===2){
+                i3.src="imagens/e.png" 
+            }else
+            if(posicao[3]===3){
+                i3.src="imagens/i.png" 
+            }else
+            if(posicao[3]===4){
+                i3.src="imagens/o.png" 
+            }else
+            if(posicao[3]===5){
+                i3.src="imagens/u.png"
+            }
+            estado[3]=1;
+            comparar(3)
+        }
+        function clicar4(){
+            verificar()
+            if(posicao[4]===1){
+                i4.src="imagens/a.png" 
+            }else
+            if(posicao[4]===2){
+                i4.src="imagens/e.png" 
+            }else
+            if(posicao[4]===3){
+                i4.src="imagens/i.png" 
+            }else
+            if(posicao[4]===4){
+                i4.src="imagens/o.png" 
+            }else
+            if(posicao[4]===5){
+                i4.src="imagens/u.png"
+            }
+            estado[4]=1
+            comparar(4)
+        }
+        function clicar5(){
+            verificar()
+            if(posicao[5]===1){
+                i5.src="imagens/a.png" 
+            }else
+            if(posicao[5]===2){
+                i5.src="imagens/e.png" 
+            }else
+            if(posicao[5]===3){
+                i5.src="imagens/i.png" 
+            }else
+            if(posicao[5]===4){
+                i5.src="imagens/o.png" 
+            }else
+            if(posicao[5]===5){
+                i5.src="imagens/u.png"
+            }
+            estado[5]=1;
+            comparar(5);
+        }
+        function clicar6(){
+            verificar()
+            if(posicao[6]===1){
+                i6.src="imagens/a.png" 
+            }else
+            if(posicao[6]===2){
+                i6.src="imagens/e.png" 
+            }else
+            if(posicao[6]===3){
+                i6.src="imagens/i.png" 
+            }else
+            if(posicao[6]===4){
+                i6.src="imagens/o.png" 
+            }else
+            if(posicao[6]===5){
+                i6.src="imagens/u.png"
+            }
+            estado[6]=1;
+            comparar(6);
+        }
+        function clicar7(){
+            verificar()
+            if(posicao[7]===1){
+                i7.src="imagens/a.png" 
+            }else
+            if(posicao[7]===2){
+                i7.src="imagens/e.png" 
+            }else
+            if(posicao[7]===3){
+                i7.src="imagens/i.png" 
+            }else
+            if(posicao[7]===4){
+                i7.src="imagens/o.png" 
+            }else
+            if(posicao[7]===5){
+                i7.src="imagens/u.png"
+            }
+            estado[7]=1;
+            comparar(7);
+        }
+        function clicar8(){
+            verificar()
+            if(posicao[8]===1){
+                i8.src="imagens/a.png" 
+            }else
+            if(posicao[8]===2){
+                i8.src="imagens/e.png" 
+            }else
+            if(posicao[8]===3){
+                i8.src="imagens/i.png" 
+            }else
+            if(posicao[8]===4){
+                i8.src="imagens/o.png" 
+            }else
+            if(posicao[8]===5){
+                i8.src="imagens/u.png"
+            }
+            estado[8]=1;
+            comparar(8);
+        }
+        function clicar9(){
+            verificar()
+            if(posicao[9]===1){
+                i9.src="imagens/a.png" 
+            }else
+            if(posicao[9]===2){
+                i9.src="imagens/e.png" 
+            }else
+            if(posicao[9]===3){
+                i9.src="imagens/i.png" 
+            }else
+            if(posicao[9]===4){
+                i9.src="imagens/o.png" 
+            }else
+            if(posicao[9]===5){
+                i9.src="imagens/u.png"
+            }
+            estado[9]=1;
+            comparar(9);
+        }
+        function comparar(atual){
+            for(var x=0;x<10;x++){
+                if(estado[x]===1 && estado[atual]===1 && x!=atual && posicao[x]===posicao[atual]){
+                    //window.alert("Posição de X: "+x+" "+estado[x]+" e Atual: "+atual) 
+                    if(x===0){
+                        //i0.style.display='none'
+                        estado[x]=0 
+                    }else
+                    if(x===1){
+                        //i1.style.display='none'
+                        estado[x]=0 
+                    }else
+                    if(x===2){
+                        //i2.style.display='none'
+                        estado[x]=0 
+                    }else
+                    if(x===3){
+                        //i3.style.display='none'
+                        estado[x]=0 
+                    }else
+                    if(x===4){
+                        //i4.style.display='none'
+                        estado[x]=0 
+                    }else
+                    if(x===5){
+                        //i5.style.display='none'
+                        estado[x]=0 
+                    }else
+                    if(x===6){
+                        //i6.style.display='none'
+                        estado[x]=0 
+                    }else
+                    if(x===7){
+                        //i7.style.display='none'
+                        estado[x]=0 
+                    }else
+                    if(x===8){
+                        //i8.style.display='none'
+                        estado[x]=0 
+                    }else
+                    if(x===9){
+                        //i9.style.display='none'
+                        estado[x]=0 
+                    }
+                    //Atual
+                    if(atual===0){
+                        //i0.style.display='none'
+                        estado[atual]=0 
+                    }else
+                    if(atual===1){
+                        //i1.style.display='none'
+                        estado[atual]=0 
+                    }else
+                    if(atual===2){
+                        //i2.style.display='none'
+                        estado[atual]=0 
+                    }else
+                    if(atual===3){
+                        //i3.style.display='none'
+                        estado[atual]=0 
+                    }else
+                    if(atual===4){
+                        //i4.style.display='none'
+                        estado[atual]=0 
+                    }else
+                    if(atual===5){
+                        //i5.style.display='none'
+                        estado[atual]=0 
+                    }else
+                    if(atual===6){
+                        //i6.style.display='none'
+                        estado[atual]=0 
+                    }else
+                    if(atual===7){
+                        //i7.style.display='none'
+                        estado[atual]=0 
+                    }else
+                    if(atual===8){
+                        //i8.style.display='none'
+                        estado[atual]=0 
+                    }else
+                    if(atual===9){
+                        //i9.style.display='none'
+                        estado[atual]=0 
+                    }  //window.alert("Posição de X: "+x+" "+estado[x]+" e Atual: "+atual)          
+                }
+            }
+                
+        }
+        function verificar(){
+            for(var x=0;x<10;x++){
+                for(var y=0;y<10;y++){
+                    if(estado[x]===1 && estado[y]===1 && x!=y && posicao[x]!=posicao[y]){
+                        //window.alert("Posição de X: "+x+" "+estado[x]+" e Y: "+y)  
+                        
+                        viraXY(x,y)
+                        
+                                 
+                    }    
+                }
+                 
+            }
+            
+        }
+        function viraXY(a,b){
+            viraX(a)
+            viraY(b)
+        }
+        function viraX(x){
+            if(x===0){
+                        i0.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }else
+                        if(x===1){
+                        i1.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }else
+                        if(x===2){
+                        i2.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }else
+                        if(x===3){
+                        i3.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }else
+                        if(x===4){
+                        i4.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }else
+                        if(x===5){
+                        i5.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }else
+                        if(x===6){
+                        i6.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }else
+                        if(x===7){
+                        i7.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }else
+                        if(x===8){
+                        i8.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }else
+                        if(x===9){
+                        i9.src="imagens/alfabeto.jpg"
+                        estado[x]=0
+                        }
+        }
+        function viraY(y){
+            if(y===0){
+                        i0.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }else
+                        if(y===1){
+                        i1.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }else                        
+                        if(y===2){
+                        i2.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }else
+                        if(y===3){
+                        i3.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }else
+                        if(y===4){
+                        i4.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }else
+                        if(y===5){
+                        i5.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }else
+                        if(y===6){
+                        i6.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }else
+                        if(y===7){
+                        i7.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }else
+                        if(y===8){
+                        i8.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }else
+                        if(y===9){
+                        i9.src="imagens/alfabeto.jpg"
+                        estado[y]=0 
+                        }
+        }
+    </script>
+</body>
+</html>
